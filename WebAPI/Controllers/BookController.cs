@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using WebAPI.BookOperations.CreateBook;
+using WebAPI.BookOperations.DeleteBook;
 using WebAPI.BookOperations.GetBooks;
+using WebAPI.BookOperations.GetById;
 using WebAPI.BookOperations.UpdateBook;
 using WebAPI.DbOperations;
-using WebAPI.Models;
-using static WebAPI.BookOperations.CreateBook.CreateBookQuery;
 
 namespace WebAPI.Controllers
 {
@@ -24,22 +21,25 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IActionResult GetBooks()
         {
-           GetBooksQuery query = new GetBooksQuery(_context);
+          GetBooksQuery query = new GetBooksQuery(_context);
           var result = query.Handle();
           return Ok(result);
         }
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
-        {try
         {
-            GetBookByIdQuery query = new GetBookByIdQuery(_context);
-            var result = query.Handle(id);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-        return Ok();
+            BookByIdVM result;
+            try
+            {
+              GetBookByIdQuery query = new GetBookByIdQuery(_context);
+              result = query.Handle(id);
+            }
+            catch (Exception ex)
+            {
+                
+                return BadRequest(ex.Message);
+            }
+            return Ok(result);
         }
         [HttpPost]
         public IActionResult AddBook([FromBody]CreateBookModel newBook)
@@ -71,14 +71,18 @@ namespace WebAPI.Controllers
                 return BadRequest(e.Message);
            }
         }
-        [HttpPost("{id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteBook(int id)
         {
-            var book = _context.Books.SingleOrDefault(x=> x.Id == id);
-            if (book is null)
-            { return BadRequest(); }
-            _context.Books.Remove(book);
-            _context.SaveChanges();
+            try
+            {
+              DeleteBookQuery query = new DeleteBookQuery(_context);
+              query.Handle(id);
+            }
+            catch (Exception ex)
+            {
+              return BadRequest(ex.Message);
+            }
             return Ok();
         }
     }

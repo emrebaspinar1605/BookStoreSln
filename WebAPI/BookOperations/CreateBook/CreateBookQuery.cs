@@ -28,7 +28,9 @@ namespace WebAPI.BookOperations.CreateBook
       _context.Books.Add(book);
       _context.SaveChanges();
     }
-    public class CreateBookModel
+    
+  }
+  public class CreateBookModel
     {
       public string Name {get; set;}
       public int GenreID {get; set;}
@@ -36,5 +38,4 @@ namespace WebAPI.BookOperations.CreateBook
       public DateTime PublishDate {get; set;}
 
     }
-  }
 }
