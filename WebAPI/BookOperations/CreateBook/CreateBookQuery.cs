@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using AutoMapper;
 using WebAPI.DbOperations;
 using WebAPI.Models;
 
@@ -9,21 +10,19 @@ namespace WebAPI.BookOperations.CreateBook
   {
     public CreateBookModel Model {get; set;}
     private readonly BookStoreDbContext _context;
+    private readonly IMapper _mapper;
 
-    public CreateBookQuery(BookStoreDbContext dbContext)
+    public CreateBookQuery(BookStoreDbContext dbContext, IMapper mapper)
     {
       _context = dbContext;
+      _mapper = mapper;
     }
     public void Handle()
     {
       var book = _context.Books.SingleOrDefault(x=> x.Name == Model.Name);
       if (book is not null)
         throw new InvalidOperationException("Kitap Zaten Mevcut");
-      book = new Book();
-      book.Name = Model.Name;
-      book.PublishDate = Model.PublishDate;
-      book.GenreId = Model.GenreID;
-      book.PageCount = Model.PageCount;
+      book = _mapper.Map<Book>(Model);
 
       _context.Books.Add(book);
       _context.SaveChanges();
