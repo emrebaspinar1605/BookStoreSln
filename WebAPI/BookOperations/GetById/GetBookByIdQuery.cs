@@ -12,6 +12,7 @@ namespace WebAPI.BookOperations.GetById
 {
   public class GetBookByIdQuery
   {
+    public int BookId { get; set;}
     private readonly BookStoreDbContext _context;
     private readonly IMapper _mapper;
     public GetBookByIdQuery(BookStoreDbContext context, IMapper mapper)
@@ -19,9 +20,9 @@ namespace WebAPI.BookOperations.GetById
       _context = context;
       _mapper = mapper;
     }
-    public BookByIdVM Handle(int id)
+    public BookByIdVM Handle()
     {
-      var book = _context.Books.Where(book => book.Id == id).SingleOrDefault();
+      var book = _context.Books.Where(book => book.Id == BookId).SingleOrDefault();
       if (book is null)
         throw new InvalidOperationException("Kitap Bulunamadı");
       BookByIdVM vm = _mapper.Map<BookByIdVM>(book);

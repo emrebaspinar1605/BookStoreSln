@@ -33,3 +33,4 @@ C:\Users\Turku\Desktop\Pratikler\BookStoreSln\WebAPI\bin\Debug\net5.0\Microsoft.
 C:\Users\Turku\Desktop\Pratikler\BookStoreSln\WebAPI\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Turku\Desktop\Pratikler\BookStoreSln\WebAPI\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\Turku\Desktop\Pratikler\BookStoreSln\WebAPI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Turku\Desktop\Pratikler\BookStoreSln\WebAPI\bin\Debug\net5.0\FluentValidation.dll

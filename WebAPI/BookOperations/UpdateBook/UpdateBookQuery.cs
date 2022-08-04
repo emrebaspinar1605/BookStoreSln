@@ -11,6 +11,7 @@ namespace WebAPI.BookOperations.UpdateBook
 {
   public class UpdateBookQuery
   {
+    public int BookId { get; set;}
     public UpdateBookModels Model{ get; set; }
     private readonly BookStoreDbContext _context;
 
@@ -19,9 +20,9 @@ namespace WebAPI.BookOperations.UpdateBook
       _context = context;
     }
 
-    public void Handle(int id)
+    public void Handle()
     {
-      var book = _context.Books.SingleOrDefault(x=> x.Id == id);
+      var book = _context.Books.SingleOrDefault(x=> x.Id == BookId);
       if (book is null)
       {
         throw new InvalidOperationException("Böyle bir kitap bulunamadı");

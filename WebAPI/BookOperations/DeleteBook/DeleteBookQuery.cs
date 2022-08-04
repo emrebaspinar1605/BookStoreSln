@@ -7,15 +7,16 @@ namespace WebAPI.BookOperations.DeleteBook
 {
   public class DeleteBookQuery
   {
+    public int BookId { get; set;}
     private readonly BookStoreDbContext _context;
 
     public DeleteBookQuery(BookStoreDbContext context)
     {
       _context = context;
     }
-    public void Handle(int id)
+    public void Handle()
     {
-      var book = _context.Books.SingleOrDefault(x=> x.Id == id);
+      var book = _context.Books.SingleOrDefault(x=> x.Id == BookId);
       if (book is null)
         throw new InvalidOperationException("Böyle bir kitap bulunmamaktadır.");
       _context.Books.Remove(book);
