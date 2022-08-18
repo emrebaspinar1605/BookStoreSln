@@ -1,14 +1,15 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Common;
 using WebAPI.DbOperations;
-using WebAPI.Models;
+using WebAPI.Entities;
 
-namespace WebAPI.BookOperations.GetById
+namespace WebAPI.Application.BookOperations.Commands.GetById
 {
   public class GetBookByIdQuery
   {
@@ -22,7 +23,7 @@ namespace WebAPI.BookOperations.GetById
     }
     public BookByIdVM Handle()
     {
-      var book = _context.Books.Where(book => book.Id == BookId).SingleOrDefault();
+      var book = _context.Books.Include(g => g.Genre).Where(book => book.Id == BookId).SingleOrDefault();
       if (book is null)
         throw new InvalidOperationException("Kitap Bulunamadı");
       BookByIdVM vm = _mapper.Map<BookByIdVM>(book);

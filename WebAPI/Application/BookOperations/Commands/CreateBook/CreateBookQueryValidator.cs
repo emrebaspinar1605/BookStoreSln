@@ -1,8 +1,9 @@
 using System;
 using FluentValidation;
+using WebAPI.Application.BookOperations.Commands.CreateBook;
 using WebAPI.Common;
 
-namespace WebAPI.BookOperations.CreateBook
+namespace WebAPI.Application.BookOperations.Queries.CreateBook
 {
   public class CreateBookQueryValidator :AbstractValidator<CreateBookQuery>
   {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Common;
 using WebAPI.DbOperations;
-using WebAPI.Models;
+using WebAPI.Entities;
 
-namespace WebAPI.BookOperations.UpdateBook
+namespace WebAPI.Application.BookOperations.Commands.UpdateBook
 {
   public class UpdateBookQuery
   {
