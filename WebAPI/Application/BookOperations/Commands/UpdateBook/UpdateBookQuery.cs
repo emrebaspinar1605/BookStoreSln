@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace WebAPI.Application.BookOperations.Commands.UpdateBook
     public UpdateBookQuery(BookStoreDbContext context)
     {
       _context = context;
+      
     }
 
     public void Handle()

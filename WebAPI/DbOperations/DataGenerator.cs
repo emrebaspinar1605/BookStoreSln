@@ -24,7 +24,7 @@ namespace WebAPI.DbOperations
           },
           new Genre
           {
-            Name = "Kült"
+            Name = "Kurgu"
 
           },
           new Genre
@@ -43,30 +43,47 @@ namespace WebAPI.DbOperations
 
           }
         );
+        context.Authors.AddRange(
+          new Author{
+            Name = "Arthur Conan",
+            SurName ="Doyle",
+            BirthDate = new DateTime(1859,05,22)
+          },
+          new Author{
+            Name = "Halide Edib",
+            SurName = "Adıvar",
+            BirthDate = new DateTime(1884,06,11)
+          },
+          new Author{
+            Name = "Cengiz",
+            SurName = "Aytmatov",
+            BirthDate = new DateTime(1928,12,12)
+          }
+        );
         context.Books.AddRange(
           new Book
             {
                // Id = 1,
                 Name = "Sherlock Holmes",
                 GenreId = 1, //polisiye
-                PageCount = 180,
-                PublishDate = new DateTime(1850,11,28)
+                PageCount = 382,
+                PublishDate = new DateTime(1892,10,14)
             },
             new Book
             {
                 // Id = 2,
                 Name = "Ateşten Gömlek",
-                GenreId = 2, //kült
-                PageCount = 150,
-                PublishDate = new DateTime(1960,05,07)
+                GenreId = 2, 
+                PageCount = 224,
+                PublishDate = new DateTime(1922,06,07)
             },
             new Book
             {
                 // Id = 3,
                 Name = "Beyaz Gemi",
-                GenreId = 2, //kült
-                PageCount = 130,
-                PublishDate = new DateTime(1987,01,15)
+                GenreId = 2, 
+                PageCount = 168,
+                PublishDate = new DateTime(1970,01,15)
             }
         );
         context.SaveChanges();

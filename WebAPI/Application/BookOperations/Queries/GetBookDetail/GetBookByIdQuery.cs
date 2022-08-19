@@ -23,7 +23,7 @@ namespace WebAPI.Application.BookOperations.Commands.GetById
     }
     public BookByIdVM Handle()
     {
-      var book = _context.Books.Include(g => g.Genre).Where(book => book.Id == BookId).SingleOrDefault();
+      var book = _context.Books.Include(g => g.Genre ).Include(x => x.Author).Where(book => book.Id == BookId).SingleOrDefault();
       if (book is null)
         throw new InvalidOperationException("Kitap Bulunamadı");
       BookByIdVM vm = _mapper.Map<BookByIdVM>(book);
@@ -33,6 +33,7 @@ namespace WebAPI.Application.BookOperations.Commands.GetById
   }
   public class BookByIdVM
   {
+    public string Author { get; set; }
     public string Name { get; set; }
     public string Genre { get; set; }
     public int PageCount { get; set; }
